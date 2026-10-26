@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Crypto Prices</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .table-container {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            overflow-x: auto;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+        }
+
+        thead {
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+        }
+
+        th {
+            padding: 20px 24px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+        }
+
+        td {
+            padding: 20px 24px;
+            border-bottom: 1px solid #334155;
+            color: #e2e8f0;
+            font-size: 15px;
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: #293548;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:nth-child(2) {
+            font-weight: 600;
+            color: #38bdf8;
+        }
+
+        td:nth-child(3) {
+            font-weight: 600;
+            color: #4ade80;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 35px 12px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
+
+            th, td {
+                padding: 15px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>₿ Live Crypto Prices</h2>
+        <p class="subtitle">Cryptocurrency market prices and 24-hour performance</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cryptocurrency Name</th>
+                        <th>Price (USD)</th>
+                        <th>Change in 24 Hours (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterate over cryptoCoins and display each coin's data -->
+                    <tr th:each="cryptoCoin : ${cryptoCoins}">
+                        <td th:text="${cryptoCoin.name}"></td>
+                        <td th:text="${cryptoCoin.price}"></td>
+                        <td th:text="${cryptoCoin.changein24Hrs}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="footer">Cryptocurrency Market Dashboard</p>
+    </div>
+
+</body>
+</html>
